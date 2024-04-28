@@ -9,7 +9,6 @@ import me.steinborn.minecraft.lotus.LotusPlugin;
 
 import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ public class InterceptSentHandshake extends ChannelOutboundHandlerAdapter {
 
     static {
         try {
-            HANDSHAKE = Class.forName("com.velocitypowered.proxy.protocol.packet.Handshake");
+            HANDSHAKE = Class.forName("com.velocitypowered.proxy.protocol.packet.HandshakePacket");
             HANDSHAKE_ADDRESS_FIELD = HANDSHAKE.getDeclaredField("serverAddress");
             HANDSHAKE_ADDRESS_FIELD.setAccessible(true);
         } catch (Exception e) {
