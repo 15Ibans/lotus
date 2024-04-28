@@ -1,6 +1,6 @@
 # Lotus
 
-Pretends that Velocity is a LilyPad proxy. Requires Velocity 1.1.0.
+Pretends that Velocity is a LilyPad proxy. Requires Velocity 3.3.0.
 
 ## License
 
