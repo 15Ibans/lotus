@@ -1,11 +1,11 @@
 package me.steinborn.minecraft.lotus;
 
 import lilypad.client.connect.api.ConnectSettings;
-import ninja.leaping.configurate.ConfigurationNode;
-import ninja.leaping.configurate.objectmapping.ObjectMapper;
-import ninja.leaping.configurate.objectmapping.ObjectMappingException;
-import ninja.leaping.configurate.objectmapping.Setting;
-import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
+import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.configurate.objectmapping.ConfigSerializable;
+import org.spongepowered.configurate.objectmapping.ObjectMapper;
+import org.spongepowered.configurate.objectmapping.meta.Setting;
+import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -16,8 +16,8 @@ public class LotusConfig implements ConnectSettings {
 
     static {
         try {
-            MAPPER = ObjectMapper.forClass(LotusConfig.class); // We hold on to the instance of our ObjectMapper
-        } catch (ObjectMappingException e) {
+            MAPPER = ObjectMapper.factory().get(LotusConfig.class); // We hold on to the instance of our ObjectMapper
+        } catch (SerializationException e) {
             throw new ExceptionInInitializerError(e);
         }
     }
@@ -25,8 +25,8 @@ public class LotusConfig implements ConnectSettings {
     public LotusConfig() {
     }
 
-    public static LotusConfig loadFrom(ConfigurationNode node) throws ObjectMappingException {
-        return MAPPER.bindToNew().populate(node);
+    public static LotusConfig loadFrom(ConfigurationNode node) throws SerializationException {
+        return MAPPER.load(node);
     }
 
     @Setting(value = "connect-host")

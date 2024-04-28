@@ -11,9 +11,9 @@ import com.velocitypowered.api.scheduler.ScheduledTask;
 import lilypad.client.connect.api.Connect;
 import lilypad.client.connect.lib.ConnectImpl;
 import me.steinborn.minecraft.lotus.backend.ServerConnectionInjector;
-import ninja.leaping.configurate.ConfigurationNode;
-import ninja.leaping.configurate.yaml.YAMLConfigurationLoader;
 import org.slf4j.Logger;
+import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.nio.file.Path;
 
@@ -43,8 +43,8 @@ public class LotusPlugin {
     @Subscribe
     public void onProxyInitialize(ProxyInitializeEvent event) {
         final Path file = this.pluginBasePath.resolve("config.yml");
-        final YAMLConfigurationLoader loader = YAMLConfigurationLoader.builder()
-                .setPath(file)
+        final YamlConfigurationLoader loader = YamlConfigurationLoader.builder()
+                .path(file)
                 .build();
         try {
             final ConfigurationNode node = loader.load();
